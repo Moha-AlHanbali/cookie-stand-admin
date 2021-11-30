@@ -11,6 +11,7 @@
 ## Change log
 
 - Cookie Stand Admin v1 "feat: completed class37" 29-11-2021
+- Cookie Stand Admin v1.1 "refactor: moved components to separate files" 30-11-2021
 
 ## PR
 
