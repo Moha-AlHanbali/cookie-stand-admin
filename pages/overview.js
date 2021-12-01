@@ -1,9 +1,12 @@
+import { useAuth } from '../contexts/auth'
+
 import Head from "next/head"
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 
 export default function overview() {
-  
+    const { user, login, logout } = useAuth();
+
     function Main() {
         return (
             <>
@@ -21,7 +24,7 @@ export default function overview() {
             <title>Cookie Stand Admin</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header />
+        <Header user = {user} />
         <Main />
         <Footer />
       </>
