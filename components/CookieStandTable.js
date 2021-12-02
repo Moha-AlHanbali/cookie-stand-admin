@@ -1,7 +1,6 @@
-import useResource from '../hooks/useResource'
+import useResource from '../hooks/useResource';
 
-
-export default function ReportTable({ hours }) {
+export default function CookieStandTable({ hours }) {
 
     const { resources, loading, deleteResource } = useResource();
 
@@ -20,6 +19,7 @@ export default function ReportTable({ hours }) {
             }
         }
 
+        
         return (
 
             <>
@@ -38,9 +38,6 @@ export default function ReportTable({ hours }) {
 
                         <tbody>
                             {resources.map(value =>
-
-                                loading ? <tr><td> PENDING</td></tr> :
-
                                     <tr key={value.id} className="odd:bg-green-300 even:bg-green-200" >
                                         <td className="py-2 text-lg border-2 border-green-600"> <span onClick={() => deleteResource(value.id)}><button className="justify-start pr-2 text-lg font-bold text-red-700">x</button></span> <span className="">{value.location} </span></td>
                                         {value.hourly_sales.map(sale =>

@@ -21,7 +21,6 @@ export default function useResource() {
             const response = await axios.get(url, config());
             
             return response.data;
-
         } catch (error) {
 
             handleError(error);
@@ -31,14 +30,9 @@ export default function useResource() {
     async function createResource(info) {
 
         try {
-            console.log("apiUrl", apiUrl);
-            console.log("INFO", info);
-            console.log("HEADER", config());
-
             await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
-            console.log("POST ERROR", error);
 
             handleError(error);
         }
@@ -47,12 +41,11 @@ export default function useResource() {
     async function deleteResource(id) {
 
         try {
-            console.log("DELETE", id);
+
             const url = apiUrl + id;
             await axios.delete(url, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
-            console.log("DELETE ERROR", error);
 
             handleError(error);
         }
