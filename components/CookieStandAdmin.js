@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 
 import Head from 'next/head'
 import Header from './Header';
@@ -12,10 +13,11 @@ import useResource from '../hooks/useResource'
 export default function CookieStandAdmin({ logout, user }) {
 
     const { resources, loading, createResource } = useResource();
-    
+    const [stands, setStands] = useState(null)
+
     function eventHandler(event) {
         event.preventDefault()
-
+        setStands(resources)
         const cookieStand = {
             location: event.target.location.value,
             id: resources.length,
@@ -47,7 +49,7 @@ export default function CookieStandAdmin({ logout, user }) {
             <>
                 <div className="flex flex-col items-center justify-center flex-1 w-full text-center bg-green-50">
                     <CreateForm eventHandler={eventHandler} />
-                    {loading? <h2 className="h-10 my-10 text-3xl font-bold text-gray-700"> Fetching Data from API... </h2>:  <CookieStandTable hours={hours} />}
+                    {loading? <h2 className="h-10 my-10 text-3xl font-bold text-gray-700"> Fetching Data from API... </h2>:  <CookieStandTable hours={hours} stands = {stands} setStands = {setStands}/>}
                     
                 </div>
             </>
