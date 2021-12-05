@@ -1,11 +1,14 @@
 import { useAuth } from '../contexts/auth'
+import useResource from '../hooks/useResource'
 
 import Head from "next/head"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import LoginForm from '../components/LoginForm';
 
 export default function overview() {
     const { user, login, logout } = useAuth();
+    const { resources} = useResource();
 
     function Main() {
         return (
@@ -19,14 +22,18 @@ export default function overview() {
     }
 
     return (
-      <>
+        <>
+        { user ? 
+        <>
         <Head>
             <title>Cookie Stand Admin</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header user = {user} />
+        <Header logout={logout} user={user} />
         <Main />
-        <Footer />
+        {loading ? <Footer standsCount={0} /> : <Footer standsCount={resources.length} /> }
+        </>
+        : <LoginForm login = {login} />}
       </>
     )
   }
